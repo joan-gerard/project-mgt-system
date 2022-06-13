@@ -1,5 +1,4 @@
 import express from "express";
-import colors from "colors";
 import cors from "cors";
 require('dotenv').config();
 const port: string | number = process.env.PORT || 5000;
