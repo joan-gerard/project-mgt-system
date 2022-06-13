@@ -11,7 +11,6 @@ import {
   GraphQLSchema,
   GraphQLString,
 } from "graphql";
-import { resolve } from "path";
 
 // Types
 const ClientType = new GraphQLObjectType({
@@ -150,7 +149,7 @@ const mutation = new GraphQLObjectType({
             values: {
               new: { value: "Not Started" },
               progress: { value: "In Progress" },
-              completed: { value: "Comnpleted" },
+              completed: { value: "Completed" },
             },
           }),
         },
