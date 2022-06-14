@@ -5,6 +5,10 @@ interface IClient {
     phone: string
 }
 
+interface IClients {
+    clients: IClient[]
+}
+
 type ClientRowProps = {
     client: IClient,
     idx: number
