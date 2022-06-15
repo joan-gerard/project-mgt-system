@@ -5,13 +5,13 @@ import { useMutation } from "@apollo/client";
 import { GET_CLIENTS } from "../queries/clientQueries";
 
 const ClientRow: React.FC<ClientRowProps> = ({ client, idx }) => {
-
   const [deleteClient] = useMutation(DELETE_CLIENT, {
     variables: { id: client.id },
     // refetchQueries: [{query: GET_CLIENTS}] // not recommended to avoid too many queries
     update(cache, { data: { deleteClient } }) {
-      const {clients} = cache.readQuery<IClients | null>({ query: GET_CLIENTS }) || {};
-      console.log('deleteClient', clients)
+      const { clients } =
+        cache.readQuery<IClients | null>({ query: GET_CLIENTS }) || {};
+      console.log("deleteClient", clients);
       cache.writeQuery({
         query: GET_CLIENTS,
         data: {
@@ -23,21 +23,27 @@ const ClientRow: React.FC<ClientRowProps> = ({ client, idx }) => {
     },
   });
 
+  console.log("ClientRow", client);
+
   return (
-    <tr>
-      <td>{idx + 1}</td>
-      <td>{client.name}</td>
-      <td>{client.email}</td>
-      <td>{client.phone}</td>
-      <td>
-        <button
-          className="btn btn-danger btn-sm"
-          onClick={() => deleteClient()}
-        >
-          <FaTrash />
-        </button>
-      </td>
-    </tr>
+    <>
+      {client.id != "62a9fd27426123031b883dac" && (
+        <tr>
+          <td>{idx + 1}</td>
+          <td>{client.name}</td>
+          <td>{client.email}</td>
+          <td>{client.phone}</td>
+          <td>
+            <button
+              className="btn btn-danger btn-sm"
+              onClick={() => deleteClient()}
+            >
+              <FaTrash />
+            </button>
+          </td>
+        </tr>
+      )}
+    </>
   );
 };
 

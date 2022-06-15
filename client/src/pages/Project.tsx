@@ -4,6 +4,7 @@ import { useQuery } from "@apollo/client";
 import { GET_PROJECT } from "../queries/projectQueries";
 import Spinner from "../components/Spinner";
 import ClientInfo from "../components/ClientInfo";
+import { FaUser } from "react-icons/fa";
 
 const Project = () => {
   const { id } = useParams();
@@ -26,7 +27,21 @@ const Project = () => {
           <h5 className="mt-3">Project Status</h5>
           <p className="lead">{data.project.status}</p>
 
-          <ClientInfo client={data.project.client} />
+          {data.project.client === null || data.project.client.name === "No Client" ? (
+            <button
+              type="button"
+              className="btn btn-secondary ms-auto"
+              data-bs-toggle="modal"
+              data-bs-target="#addClientModal"
+            >
+              <div className="d-flex align-items-center">
+                <FaUser className="icon" />
+                <div>Add Client</div>
+              </div>
+            </button>
+          ) : (
+            <ClientInfo client={data.project.client} />
+          )}
         </div>
       )}
     </>

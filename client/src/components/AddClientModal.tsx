@@ -14,7 +14,6 @@ const AddClientModal = () => {
     update(cache, { data: { addClient } }) {
       const { clients } =
         cache.readQuery<IClients | null>({ query: GET_CLIENTS }) || {};
-      console.log("addClient", clients);
       cache.writeQuery({
         query: GET_CLIENTS,
         data: { clients: [...(clients || []), addClient] },
