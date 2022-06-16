@@ -1,10 +1,13 @@
 import React from "react";
-import { Link, useParams } from "react-router-dom";
-import { useQuery } from "@apollo/client";
-import { GET_PROJECT } from "../queries/projectQueries";
-import Spinner from "../components/Spinner";
 import ClientInfo from "../components/ClientInfo";
-import { FaUser } from "react-icons/fa";
+import DeleteProjectButton from "../components/DeleteProjectButton";
+import Spinner from "../components/Spinner";
+import { Link, useParams } from "react-router-dom";
+import { useQuery, useMutation } from "@apollo/client";
+import { GET_PROJECT, GET_PROJECTS } from "../queries/projectQueries";
+import { DELETE_PROJECT } from "../mutations/projectmutations";
+import { FaUser, FaTrash } from "react-icons/fa";
+
 
 const Project = () => {
   const { id } = useParams();
@@ -24,7 +27,7 @@ const Project = () => {
           </Link>
           <h1>{data.project.name}</h1>
           <p>{data.project.description}</p>
-          <h5 className="mt-3">Project Status</h5>
+          <h5 className="mt-3">Project Status!</h5>
           <p className="lead">{data.project.status}</p>
 
           {data.project.client === null || data.project.client.name === "No Client" ? (
@@ -42,6 +45,7 @@ const Project = () => {
           ) : (
             <ClientInfo client={data.project.client} />
           )}
+          <DeleteProjectButton projectId={data.project.id} />
         </div>
       )}
     </>

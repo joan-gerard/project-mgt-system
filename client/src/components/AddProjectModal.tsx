@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FaList } from "react-icons/fa";
+import { FaList, FaArrowRight } from "react-icons/fa";
 import { useMutation, useQuery } from "@apollo/client";
 import { GET_PROJECTS } from "../queries/projectQueries";
 import { GET_CLIENTS } from "../queries/clientQueries";
@@ -46,12 +46,12 @@ const AddProjectModal = () => {
         <>
           <button
             type="button"
-            className="btn btn-secondary"
+            className="btn btn-secondary btn-effect"
             data-bs-toggle="modal"
             data-bs-target="#addProjectModal"
           >
             <div className="d-flex align-items-center">
-              <FaList className="icon" />
+              {/* <FaList className="icon FaList" /> */}
               <div>New Project</div>
             </div>
           </button>

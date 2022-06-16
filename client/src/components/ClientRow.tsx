@@ -11,7 +11,6 @@ const ClientRow: React.FC<ClientRowProps> = ({ client, idx }) => {
     update(cache, { data: { deleteClient } }) {
       const { clients } =
         cache.readQuery<IClients | null>({ query: GET_CLIENTS }) || {};
-      console.log("deleteClient", clients);
       cache.writeQuery({
         query: GET_CLIENTS,
         data: {
