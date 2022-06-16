@@ -1,13 +1,17 @@
+import { useState } from "react";
 import ClientInfo from "../components/ClientInfo";
 import DeleteProjectButton from "../components/DeleteProjectButton";
 import Spinner from "../components/Spinner";
 import { Link, useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import { GET_PROJECT } from "../queries/projectQueries";
-import { FaUser } from "react-icons/fa";
+import { FaPencilAlt } from "react-icons/fa";
 import EditProjectForm from "../components/EditProjectForm";
+import AddClientToProject from "../components/AddClientToProject";
 
 const Project = () => {
+  const [needsUpdate, setNeedsUpdate] = useState(false);
+
   const { id } = useParams();
   const { loading, error, data } = useQuery(GET_PROJECT, {
     variables: { id },
@@ -30,21 +34,29 @@ const Project = () => {
 
           {data.project.client === null ||
           data.project.client.name === "No Client" ? (
-            <button
-              type="button"
-              className="btn btn-secondary ms-auto"
-              data-bs-toggle="modal"
-              data-bs-target="#addClientModal"
-            >
-              <div className="d-flex align-items-center">
-                <FaUser className="icon" />
-                <div>Add Client</div>
-              </div>
-            </button>
+            <>
+              <AddClientToProject />
+            </>
           ) : (
             <ClientInfo client={data.project.client} />
           )}
-          <EditProjectForm project={data.project} />
+          {needsUpdate ? (
+            <EditProjectForm project={data.project} setNeedsUpdate={setNeedsUpdate} />
+          ) : (
+            <button
+              type="button"
+              className="btn btn-secondary ms-auto mt-5"
+              data-bs-toggle="modal"
+              data-bs-target="#addClientModal"
+              onClick={() => setNeedsUpdate(true)}
+            >
+              <div className="d-flex align-items-center">
+                <FaPencilAlt className="icon" />
+                <div>Edit Project</div>
+              </div>
+            </button>
+          )}
+
           <DeleteProjectButton projectId={data.project.id} />
         </div>
       )}

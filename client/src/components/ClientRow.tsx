@@ -22,8 +22,6 @@ const ClientRow: React.FC<ClientRowProps> = ({ client, idx }) => {
     },
   });
 
-  console.log("ClientRow", client);
-
   return (
     <>
       {client.id != "62a9fd27426123031b883dac" && (

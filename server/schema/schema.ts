@@ -129,15 +129,6 @@ const mutation = new GraphQLObjectType({
         return project.save();
       },
     },
-    deleteProject: {
-      type: ProjectType,
-      args: {
-        id: { type: new GraphQLNonNull(GraphQLID) },
-      },
-      resolve(parent, args) {
-        return Project.findByIdAndRemove(args.id);
-      },
-    },
     updateProject: {
       type: ProjectType,
       args: {
@@ -154,6 +145,7 @@ const mutation = new GraphQLObjectType({
             },
           }),
         },
+        clientId: { type: GraphQLID },
       },
       resolve(parent, args) {
         return Project.findByIdAndUpdate(
@@ -163,10 +155,20 @@ const mutation = new GraphQLObjectType({
               name: args.name,
               description: args.description,
               status: args.status,
+              clientId: args.clientId,
             },
           },
           { new: true }
         );
+      },
+    },
+    deleteProject: {
+      type: ProjectType,
+      args: {
+        id: { type: new GraphQLNonNull(GraphQLID) },
+      },
+      resolve(parent, args) {
+        return Project.findByIdAndRemove(args.id);
       },
     },
   },

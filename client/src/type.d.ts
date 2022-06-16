@@ -1,3 +1,5 @@
+import { BlobOptions } from "buffer";
+
 interface IClient {
   id: string;
   name: string;
@@ -42,5 +44,6 @@ type ConfirmDialogProps = {
 };
 
 type EditProjectFormProps = {
-  project: IProject
+  project: IProject;
+  setNeedsUpdate: (a: boolean) => void
 }
