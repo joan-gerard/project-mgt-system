@@ -11,6 +11,7 @@ const AddClientModal = () => {
 
   const [addClient] = useMutation(ADD_CLIENT, {
     variables: { name, email, phone },
+
     update(cache, { data: { addClient } }) {
       const { clients } =
         cache.readQuery<IClients | null>({ query: GET_CLIENTS }) || {};
