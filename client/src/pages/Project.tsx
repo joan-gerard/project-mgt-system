@@ -7,7 +7,6 @@ import { useQuery } from "@apollo/client";
 import { GET_PROJECT } from "../queries/projectQueries";
 import { FaPencilAlt } from "react-icons/fa";
 import EditProjectForm from "../components/EditProjectForm";
-import AddClientToProject from "../components/AddClientToProject";
 
 const Project = () => {
   const [needsUpdate, setNeedsUpdate] = useState(false);
@@ -35,7 +34,6 @@ const Project = () => {
           {data.project.client === null ||
           data.project.client.name === "No Client" ? (
             <>
-              <AddClientToProject />
             </>
           ) : (
             <ClientInfo client={data.project.client} />

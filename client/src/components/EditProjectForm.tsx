@@ -4,9 +4,11 @@ import { useMutation, useQuery } from "@apollo/client";
 import { GET_PROJECT } from "../queries/projectQueries";
 import { UPDATE_PROJECT } from "../mutations/projectmutations";
 import { GET_CLIENTS } from "../queries/clientQueries";
-import { EditProjectFormProps, IClient } from "../type";
 
-const EditProjectForm: React.FC<EditProjectFormProps> = ({ project, setNeedsUpdate }) => {
+const EditProjectForm: React.FC<EditProjectFormProps> = ({
+  project,
+  setNeedsUpdate,
+}) => {
   const [name, setName] = useState(project.name);
   const [description, setDescription] = useState(project.description);
   const [status, setStatus] = useState("");
@@ -28,7 +30,7 @@ const EditProjectForm: React.FC<EditProjectFormProps> = ({ project, setNeedsUpda
       return alert("Please, fill all fields");
     }
     updateProject();
-    setNeedsUpdate(false)
+    setNeedsUpdate(false);
   };
 
   if (loading) return null;
@@ -67,6 +69,7 @@ const EditProjectForm: React.FC<EditProjectFormProps> = ({ project, setNeedsUpda
                 className="form-select"
                 onChange={(e) => setStatus(e.target.value)}
               >
+                <option value="">Select</option>
                 <option value="new">Not Started</option>
                 <option value="progress">In Progress</option>
                 <option value="completed">Completed</option>

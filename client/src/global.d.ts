@@ -1,4 +1,3 @@
-import { BlobOptions } from "buffer";
 
 interface IClient {
   id: string;
@@ -29,7 +28,6 @@ type ClientInfoProps = {
 
 type ProjectRowProps = {
   project: IProject;
-  idx: number;
 };
 type DeleteProjectButtonProps = {
   projectId: string;
