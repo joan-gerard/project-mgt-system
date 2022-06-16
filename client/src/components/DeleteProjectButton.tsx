@@ -5,7 +5,6 @@ import { GET_PROJECTS } from "../queries/projectQueries";
 import { useMutation } from "@apollo/client";
 import { DELETE_PROJECT } from "../mutations/projectmutations";
 
-import { confirmAlert } from "react-confirm-alert"; // Import
 import "react-confirm-alert/src/react-confirm-alert.css"; // Import css
 import ConfirmDialog from "./ConfirmDialog";
 
@@ -30,26 +29,7 @@ const DeleteProjectButton: React.FC<DeleteProjectButtonProps> = ({
     },
   });
 
-  const [confirmOpen, setConfirmOpen] = useState(false)
-
-  // const confirmDelete = () => {
-  //   // const result = window.confirm("Are you sure");
-  //   // if (result) deleteProject();
-  //   confirmAlert({
-  //     title: "Confirm to submit",
-  //     message: "Are you sure to do this.",
-  //     buttons: [
-  //       {
-  //         label: "Yes",
-  //         onClick: () => deleteProject(),
-  //       },
-  //       {
-  //         label: "No",
-  //         onClick: () => {},
-  //       },
-  //     ],
-  //   });
-  // };
+  const [confirmOpen, setConfirmOpen] = useState(false);
 
   return (
     <>

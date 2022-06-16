@@ -90,26 +90,4 @@ code {
   margin-right: 6px;
 }
 
-/* .FaArrowRight {
-  width: 0px;
-  height: 8px;
-  overflow: hidden;
-  display: none;
-}
-
-.btn:hover .FaArrowRight {
-  display: block;
-  margin-left: 6px;
-  margin-right: 0;
-  width: 20px;
-  height: 15px;
-
-  transition: width 700ms, margin-left 700ms;
-}
-.btn:hover .FaList {
-  display: none;
-  width: 0;
-  margin-left: 0;
-  transition: width 700ms, margin-left 700ms;
-} */
 
