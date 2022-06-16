@@ -40,3 +40,7 @@ type ConfirmDialogProps = {
   children: string;
   onConfirm: () => void;
 };
+
+type EditProjectFormProps = {
+  project: IProject
+}

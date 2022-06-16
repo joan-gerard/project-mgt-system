@@ -5,6 +5,7 @@ import { Link, useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import { GET_PROJECT } from "../queries/projectQueries";
 import { FaUser } from "react-icons/fa";
+import EditProjectForm from "../components/EditProjectForm";
 
 const Project = () => {
   const { id } = useParams();
@@ -43,6 +44,7 @@ const Project = () => {
           ) : (
             <ClientInfo client={data.project.client} />
           )}
+          <EditProjectForm project={data.project} />
           <DeleteProjectButton projectId={data.project.id} />
         </div>
       )}
