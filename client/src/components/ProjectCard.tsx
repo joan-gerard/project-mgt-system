@@ -5,20 +5,6 @@ import { DELETE_PROJECT } from "../mutations/projectmutations";
 import { GET_PROJECTS } from "../queries/projectQueries";
 
 const ProjectCard: React.FC<ProjectRowProps> = ({ project, idx }) => {
-  // const [deleteProject] = useMutation(DELETE_PROJECT, {
-  //   variables: { id: project.id },
-  //   update(cache, { data: { deleteProject } }) {
-  //     const { projects } = cache.readQuery({ query: GET_PROJECTS }) || {};
-  //     cache.writeQuery({
-  //       query: GET_PROJECTS,
-  //       data: {
-  //         projects: projects?.filter(
-  //           (project: IClient) => project.id !== deleteProject.id
-  //         ),
-  //       },
-  //     });
-  //   },
-  // });
 
   return (
     <div className="col-md-6">

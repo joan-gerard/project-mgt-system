@@ -1,14 +1,75 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaTrash } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+import { GET_PROJECTS } from "../queries/projectQueries";
+import { useMutation } from "@apollo/client";
+import { DELETE_PROJECT } from "../mutations/projectmutations";
+
+import { confirmAlert } from "react-confirm-alert"; // Import
+import "react-confirm-alert/src/react-confirm-alert.css"; // Import css
+import ConfirmDialog from "./ConfirmDialog";
 
 const DeleteProjectButton: React.FC<DeleteProjectButtonProps> = ({
   projectId,
 }) => {
+  const navigate = useNavigate();
+
+  const [deleteProject] = useMutation(DELETE_PROJECT, {
+    variables: { id: projectId },
+    onCompleted: () => navigate("/"),
+    update(cache, { data: { deleteProject } }) {
+      const { projects } = cache.readQuery({ query: GET_PROJECTS }) || {};
+      cache.writeQuery({
+        query: GET_PROJECTS,
+        data: {
+          projects: projects?.filter(
+            (project: IClient) => project.id !== deleteProject.id
+          ),
+        },
+      });
+    },
+  });
+
+  const [confirmOpen, setConfirmOpen] = useState(false)
+
+  // const confirmDelete = () => {
+  //   // const result = window.confirm("Are you sure");
+  //   // if (result) deleteProject();
+  //   confirmAlert({
+  //     title: "Confirm to submit",
+  //     message: "Are you sure to do this.",
+  //     buttons: [
+  //       {
+  //         label: "Yes",
+  //         onClick: () => deleteProject(),
+  //       },
+  //       {
+  //         label: "No",
+  //         onClick: () => {},
+  //       },
+  //     ],
+  //   });
+  // };
+
   return (
     <>
-      <button className="btn btn-danger btn-sm ms-auto mt-5" onClick={() => {}}>
-        <FaTrash />
-      </button>
+      <div className="d-flex mt-5 ms-auto">
+        <button
+          className="btn btn-danger btn-sm"
+          onClick={() => setConfirmOpen(true)}
+        >
+          <FaTrash className="icon mb-1" />
+          Delete Project
+        </button>
+        <ConfirmDialog
+          title="Delete Post?"
+          open={confirmOpen}
+          setOpen={setConfirmOpen}
+          onConfirm={deleteProject}
+        >
+          Are you sure you want to delete this post?
+        </ConfirmDialog>
+      </div>
     </>
   );
 };

@@ -3,18 +3,18 @@ interface IClient {
   name: string;
   email: string;
   phone: string;
-};
+}
 
 interface IProject {
   id: string;
   name: string;
   status: string;
   description: string;
-};
+}
 
 interface IClients {
   clients: IClient[];
-};
+}
 
 type ClientRowProps = {
   client: IClient;
@@ -31,4 +31,12 @@ type ProjectRowProps = {
 };
 type DeleteProjectButtonProps = {
   projectId: string;
+};
+
+type ConfirmDialogProps = {
+  title: string;
+  open: boolean;
+  setOpen: (a: boolean) => void;
+  children: string;
+  onConfirm: () => void;
 };
