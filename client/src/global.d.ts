@@ -1,5 +1,6 @@
 
 interface IClient {
+  company: string;
   id: string;
   name: string;
   email: string;

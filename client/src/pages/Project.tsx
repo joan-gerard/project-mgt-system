@@ -33,13 +33,15 @@ const Project = () => {
 
           {data.project.client === null ||
           data.project.client.name === "No Client" ? (
-            <>
-            </>
+            <></>
           ) : (
             <ClientInfo client={data.project.client} />
           )}
           {needsUpdate ? (
-            <EditProjectForm project={data.project} setNeedsUpdate={setNeedsUpdate} />
+            <EditProjectForm
+              project={data.project}
+              setNeedsUpdate={setNeedsUpdate}
+            />
           ) : (
             <button
               type="button"

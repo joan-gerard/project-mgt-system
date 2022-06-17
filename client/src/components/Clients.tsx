@@ -10,12 +10,15 @@ const Clients = () => {
   if (loading) return <Spinner />;
   if (error) return <p>Something Went Wrong</p>;
 
+
+
   return (
     <>
       {!loading && !error && (
         <table className="table table-hover mt-3">
           <thead>
             <tr>
+              <th>Company</th>
               <th>Name</th>
               <th>Email</th>
               <th>Phone</th>

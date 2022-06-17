@@ -18,6 +18,7 @@ export const GET_PROJECT = gql`
       status
       client {
         id
+        company
         name
         email
         phone

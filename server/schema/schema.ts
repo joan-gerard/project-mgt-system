@@ -17,6 +17,7 @@ const ClientType = new GraphQLObjectType({
   name: "Client",
   fields: () => ({
     id: { type: GraphQLID },
+    company: { type: GraphQLString },
     name: { type: GraphQLString },
     email: { type: GraphQLString },
     phone: { type: GraphQLString },
@@ -78,12 +79,14 @@ const mutation = new GraphQLObjectType({
     addClient: {
       type: ClientType,
       args: {
+        company: { type: new GraphQLNonNull(GraphQLString) },
         name: { type: new GraphQLNonNull(GraphQLString) },
         email: { type: new GraphQLNonNull(GraphQLString) },
         phone: { type: new GraphQLNonNull(GraphQLString) },
       },
       resolve(parent, args) {
         const client = new Client({
+          company: args.company,
           name: args.name,
           email: args.email,
           phone: args.phone,

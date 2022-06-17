@@ -22,10 +22,12 @@ const ClientRow: React.FC<ClientRowProps> = ({ client, idx }) => {
     },
   });
 
+
   return (
     <>
       {client.id !== "62a9fd27426123031b883dac" && (
         <tr>
+          <td>{client.company}</td>
           <td>{client.name}</td>
           <td>{client.email}</td>
           <td>{client.phone}</td>

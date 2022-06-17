@@ -6,11 +6,12 @@ import { GET_CLIENTS } from "../queries/clientQueries";
 
 const AddClientModal = () => {
   const [name, setName] = useState("");
+  const [company, setCompany] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
 
   const [addClient] = useMutation(ADD_CLIENT, {
-    variables: { name, email, phone },
+    variables: { company, name, email, phone },
 
     update(cache, { data: { addClient } }) {
       const { clients } =
@@ -30,6 +31,7 @@ const AddClientModal = () => {
     }
 
     addClient();
+    setCompany("")
     setName("");
     setEmail("");
     setPhone("");
@@ -71,6 +73,16 @@ const AddClientModal = () => {
             </div>
             <div className="modal-body">
               <form onSubmit={handleAddClient}>
+                <div className="mb-3">
+                  <label className="form-label">Company</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="company"
+                    value={company}
+                    onChange={(e) => setCompany(e.target.value)}
+                  />
+                </div>
                 <div className="mb-3">
                   <label className="form-label">Name</label>
                   <input
