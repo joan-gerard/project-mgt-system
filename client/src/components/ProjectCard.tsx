@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { getTodayDate } from "../utils";
+import React, { useCallback, useEffect, useState } from "react";
+import { calculateCountdown } from "../utils";
 
 const ProjectCard: React.FC<ProjectRowProps> = ({ project }) => {
   const [isStarted, setIsStarted] = useState(false);
   const [isInProgress, setIsInProgress] = useState(false);
   const [isCompleted, setIsCompleted] = useState(false);
-  const [countdown, setCountdown] = useState("test");
+  const [countdown, setCountdown] = useState<number | undefined>();
 
   useEffect(() => {
     if (project.status === "Not Started") {
@@ -19,35 +19,21 @@ const ProjectCard: React.FC<ProjectRowProps> = ({ project }) => {
     }
   }, []);
 
-  const changeDateFormat = (completionDate: string) => {
-    const replace = completionDate.replace(/-/g, " / ");
-    const split = replace.split(" ");
-    const reverse = split.reverse();
+  useEffect(() => {
+    calculateCountdown(project.completionDate, setCountdown);
+  }, []);
 
-    const tmp = reverse[2];
-    reverse[2] = reverse[0];
-    reverse[0] = tmp;
-
-    const join = reverse.join("");
-
-    console.log("changeDateFormat", join);
-    return join;
-  };
-
-  const calculateCountdown = (completionDate: string) => {
-    const today = new Date();
-    const date2 = new Date(changeDateFormat(completionDate));
-
-    const Difference_In_Time = date2.getTime() - today.getTime();
-    const Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
-
-    // console.log(Math.ceil(Difference_In_Days));
-    return Math.ceil(Difference_In_Days);
-  };
-
-  changeDateFormat(project.completionDate);
-
-  console.log("project", project);
+  const countdownText = useCallback(
+    () =>
+      countdown && countdown < 0
+        ? Math.abs(countdown) === 1
+          ? `${countdown} day overdue`
+          : `${countdown} days overdue`
+        : countdown === 1
+        ? `${countdown} day remaining`
+        : `${countdown} days remaining`,
+    [countdown]
+  );
 
   return (
     <div className="col-md-6">
@@ -71,7 +57,12 @@ const ProjectCard: React.FC<ProjectRowProps> = ({ project }) => {
               {project.status}
             </strong>
           </p>
-          <p>{calculateCountdown(project.completionDate)}</p>
+          {isCompleted ? null : <p>{countdownText()}</p>}
+          {/* {isCompleted ? null : countdown && countdown < 0 ? (
+            <p>{countdown} days overdue</p>
+          ) : (
+            <p>{countdown} days remaining</p>
+          )} */}
         </div>
       </div>
     </div>
