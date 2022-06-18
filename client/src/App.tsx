@@ -5,6 +5,7 @@ import NotFound from "./pages/NotFound";
 import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
 import Project from "./pages/Project";
 import Gantt2 from "./Gantt2/Gantt2";
+import CurrentDate from "./components/CurrentDate";
 
 const cache = new InMemoryCache({
   typePolicies: {
@@ -35,8 +36,11 @@ function App() {
     <>
       <ApolloProvider client={client}>
         <Router>
-          <Header />
-          <div className="container">
+          <nav className="navbar navbar-expand-lg bg-light ps-4 pe-4 mb-4 align-items-center">
+            <Header />
+            <CurrentDate />
+          </nav>
+          <div className="container-fluid ps-5 pe-5">
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/project/:id" element={<Project />} />
