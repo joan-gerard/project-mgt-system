@@ -18,7 +18,7 @@ const Projects = () => {
             <ProjectCard key={idx} project={project} />
           ))}
         </div>
-      ) : (<p>No Projects</p>)}
+      ) : (<h4 className="m-4">No Projects</h4>)}
     </>
   );
 };

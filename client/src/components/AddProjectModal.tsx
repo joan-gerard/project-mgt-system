@@ -7,6 +7,7 @@ import { ADD_PROJECT } from "../mutations/projectmutations";
 const AddProjectModal = () => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
+  const [completionDate, setCompletionDate] = useState("");
   const [clientId, setClientId] = useState("noClient");
   const [status, setStatus] = useState("new");
 
@@ -14,7 +15,7 @@ const AddProjectModal = () => {
   const { loading, error, data } = useQuery(GET_CLIENTS);
 
   const [addProject] = useMutation(ADD_PROJECT, {
-    variables: { name, description, status, clientId },
+    variables: { name, description, completionDate, status, clientId },
     update(cache, { data: { addProject } }) {
       const { projects } = cache.readQuery({ query: GET_PROJECTS }) || {};
       cache.writeQuery({
@@ -33,6 +34,7 @@ const AddProjectModal = () => {
     addProject();
     setName("");
     setDescription("");
+    setCompletionDate("");
     setStatus("new");
     setClientId("");
   };
@@ -93,6 +95,16 @@ const AddProjectModal = () => {
                         value={description}
                         onChange={(e) => setDescription(e.target.value)}
                       ></textarea>
+                    </div>
+                    <div className="mb-3">
+                      <label className="form-label">Completion Date</label>
+                      <input
+                        type="date"
+                        className="form-control"
+                        id="completionDate"
+                        value={completionDate}
+                        onChange={(e) => setCompletionDate(e.target.value)}
+                      ></input>
                     </div>
                     <div className="mb-3">
                       <label className="form-label">Status</label>

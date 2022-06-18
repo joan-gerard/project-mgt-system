@@ -4,18 +4,21 @@ export const ADD_PROJECT = gql`
   mutation addProject(
     $name: String!
     $description: String!
+    $completionDate: String!
     $status: ProjectStatus!
     $clientId: ID
   ) {
     addProject(
       name: $name
       description: $description
+      completionDate: $completionDate
       status: $status
       clientId: $clientId
     ) {
       id
       name
       description
+      completionDate
       status
       client {
         id

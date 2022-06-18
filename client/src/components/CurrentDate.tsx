@@ -1,11 +1,9 @@
 import React from "react";
+import { getTodayDate } from "../utils";
 
 const CurrentDate = () => {
-  const current = new Date();
-  const date = `${current.getDate()}/${
-    current.getMonth() + 1
-  }/${current.getFullYear()}`;
 
+  const date = getTodayDate()
   return (
     <div>
       <p className="m-0">{date}</p>

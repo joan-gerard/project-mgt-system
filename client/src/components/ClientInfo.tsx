@@ -3,8 +3,6 @@ import { FaEnvelope, FaPhone, FaIdBadge, FaBuilding } from "react-icons/fa";
 
 const ClientInfo: React.FC<ClientInfoProps> = ({ client }) => {
 
-    console.log('ClientInfo', client)
-
   return (
       <>
       <h5 className="mt-5">Client Information</h5>

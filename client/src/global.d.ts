@@ -12,6 +12,7 @@ interface IProject {
   name: string;
   status: string;
   description: string;
+  completionDate: string
 }
 
 interface IClients {
