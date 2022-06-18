@@ -13,7 +13,7 @@ const Projects = () => {
   return (
     <>
       {data.projects.length ? (
-        <div className="row mt-5">
+        <div className="row mt-3">
           {data.projects.map((project: IProject, idx: number) => (
             <ProjectCard key={idx} project={project} />
           ))}
