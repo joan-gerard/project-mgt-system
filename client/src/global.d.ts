@@ -1,4 +1,3 @@
-
 interface IClient {
   company: string;
   id: string;
@@ -12,7 +11,7 @@ interface IProject {
   name: string;
   status: string;
   description: string;
-  completionDate: string
+  completionDate: string;
 }
 
 interface IClients {
@@ -45,5 +44,8 @@ type ConfirmDialogProps = {
 
 type EditProjectFormProps = {
   project: IProject;
-  setNeedsUpdate: (a: boolean) => void
-}
+  setNeedsUpdate: (a: boolean) => void;
+};
+
+type HomeProps = {};
+type AddProjectModalProps = {};

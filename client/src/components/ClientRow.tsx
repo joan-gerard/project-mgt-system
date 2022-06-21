@@ -4,6 +4,11 @@ import { DELETE_CLIENT } from "../mutations/clientMutations";
 import { useMutation } from "@apollo/client";
 import { GET_CLIENTS } from "../queries/clientQueries";
 
+import * as io from "socket.io-client";
+
+const socket = io.connect("http://localhost:5000");
+
+
 const ClientRow: React.FC<ClientRowProps> = ({ client, idx }) => {
   const [deleteClient] = useMutation(DELETE_CLIENT, {
     variables: { id: client.id },
@@ -22,6 +27,14 @@ const ClientRow: React.FC<ClientRowProps> = ({ client, idx }) => {
     },
   });
 
+  const handleDeleteClient = () => {
+    deleteClient()
+    socket.emit("delete_client", {
+      data: { client }
+    });
+
+  }
+
 
   return (
     <>
@@ -34,7 +47,7 @@ const ClientRow: React.FC<ClientRowProps> = ({ client, idx }) => {
           <td>
             <button
               className="btn btn-danger btn-sm"
-              onClick={() => deleteClient()}
+              onClick={() => handleDeleteClient()}
             >
               <FaTrash />
             </button>

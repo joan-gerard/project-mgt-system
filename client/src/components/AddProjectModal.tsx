@@ -4,6 +4,10 @@ import { GET_PROJECTS } from "../queries/projectQueries";
 import { GET_CLIENTS } from "../queries/clientQueries";
 import { ADD_PROJECT } from "../mutations/projectmutations";
 
+import * as io from "socket.io-client";
+
+const socket = io.connect("http://localhost:5000");
+
 const AddProjectModal = () => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
@@ -16,14 +20,18 @@ const AddProjectModal = () => {
 
   const [addProject] = useMutation(ADD_PROJECT, {
     variables: { name, description, completionDate, status, clientId },
-    update(cache, { data: { addProject } }) {
-      const { projects } = cache.readQuery({ query: GET_PROJECTS }) || {};
-      cache.writeQuery({
-        query: GET_PROJECTS,
-        data: { projects: [...(projects || []), addProject] },
-      });
-    },
+    // update(cache, { data: { addProject } }) {
+    //   const { projects } = cache.readQuery({ query: GET_PROJECTS }) || {};
+    //   cache.writeQuery({
+    //     query: GET_PROJECTS,
+    //     data: { projects: [...(projects || []), addProject] },
+    //   });
+    // },
+    refetchQueries: [{query: GET_PROJECTS}] // not recommended to avoid too many queries
+
   });
+
+
 
   const handleAddProject = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -31,6 +39,10 @@ const AddProjectModal = () => {
     if (name === "" || description === "" || status === "") {
       return alert("Please, fill all fields");
     }
+    socket.emit("send_projects", {
+      data: { name, description, completionDate, status, clientId }
+    });
+
     addProject();
     setName("");
     setDescription("");

@@ -4,6 +4,11 @@ import { useMutation } from "@apollo/client";
 import { ADD_CLIENT } from "../mutations/clientMutations";
 import { GET_CLIENTS } from "../queries/clientQueries";
 
+import * as io from "socket.io-client";
+
+const socket = io.connect("http://localhost:5000");
+
+
 const AddClientModal = () => {
   const [name, setName] = useState("");
   const [company, setCompany] = useState("");
@@ -13,14 +18,15 @@ const AddClientModal = () => {
   const [addClient] = useMutation(ADD_CLIENT, {
     variables: { company, name, email, phone },
 
-    update(cache, { data: { addClient } }) {
-      const { clients } =
-        cache.readQuery<IClients | null>({ query: GET_CLIENTS }) || {};
-      cache.writeQuery({
-        query: GET_CLIENTS,
-        data: { clients: [...(clients || []), addClient] },
-      });
-    },
+    // update(cache, { data: { addClient } }) {
+    //   const { clients } =
+    //     cache.readQuery<IClients | null>({ query: GET_CLIENTS }) || {};
+    //   cache.writeQuery({
+    //     query: GET_CLIENTS,
+    //     data: { clients: [...(clients || []), addClient] },
+    //   });
+    // },
+    refetchQueries: [{query: GET_CLIENTS}]
   });
 
   const handleAddClient = (e: React.FormEvent<HTMLFormElement>) => {
@@ -29,6 +35,9 @@ const AddClientModal = () => {
     if (name === "" || email === "" || phone === "") {
       return alert("Please, fill all fields");
     }
+    socket.emit("send_clients", {
+      data: { company, name, email, phone }
+    });
 
     addClient();
     setCompany("")

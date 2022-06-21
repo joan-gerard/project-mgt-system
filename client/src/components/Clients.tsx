@@ -1,16 +1,28 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ClientRow from "./ClientRow";
 import Spinner from "./Spinner";
 import { useQuery } from "@apollo/client";
 import { GET_CLIENTS } from "../queries/clientQueries";
 
+import * as io from "socket.io-client";
+
+const socket = io.connect("http://localhost:5000");
+
 const Clients = () => {
-  const { loading, error, data } = useQuery(GET_CLIENTS);
+  const { loading, error, data, client } = useQuery(GET_CLIENTS);
+
+  useEffect(() => {
+    socket.on("receive_clients", (dataIO) => {
+      console.log("refetching...");
+
+      client.refetchQueries({
+        include: [GET_CLIENTS],
+      });
+    });
+  }, [socket]);
 
   if (loading) return <Spinner />;
   if (error) return <p>Something Went Wrong</p>;
-
-
 
   return (
     <>
