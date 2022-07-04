@@ -4,8 +4,8 @@ import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
 import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
 import Project from "./pages/Project";
-import Gantt2 from "./Gantt2/Gantt2";
 import CurrentDate from "./components/CurrentDate";
+import Schedule from "./pages/Schedule";
 
 const cache = new InMemoryCache({
   typePolicies: {
@@ -44,7 +44,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/project/:id" element={<Project />} />
-              <Route path="/gantt" element={<Gantt2 />} />
+              <Route path="/project/schedule/:id" element={<Schedule />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </div>

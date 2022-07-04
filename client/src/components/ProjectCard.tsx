@@ -44,6 +44,9 @@ const ProjectCard: React.FC<ProjectRowProps> = ({ project }) => {
             <a className="btn btn-light" href={`/project/${project.id}`}>
               View
             </a>
+            <a className="btn btn-light" href={`/project/schedule/${project.id}`}>
+              Schedule
+            </a>
           </div>
           <p className="small">
             Status:{" "}

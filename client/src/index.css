@@ -95,3 +95,7 @@ code {
   width: 90vw; 
   margin: 0 auto;
 }
+
+.bar-label {
+  color: red
+}
