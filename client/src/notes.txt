@@ -1,0 +1,22 @@
+mutation {
+  addtask () {
+    projectId
+    taskId
+    taskName
+    taskStart
+    taskEnd
+    taskProgress
+    taskDependency
+  }
+}
+
+"projects": [
+      {
+        "id": "62b1bcc40f8bd11222443bf1",
+        "name": "joe"
+      },
+      {
+        "id": "62c2dec6e05150f13cf48921",
+        "name": "test"
+      }
+    ]
