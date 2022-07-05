@@ -4,7 +4,7 @@ import { FaEnvelope, FaPhone, FaIdBadge, FaBuilding } from "react-icons/fa";
 const ClientInfo: React.FC<ClientInfoProps> = ({ client }) => {
   return (
     <>
-      <h5 className="mt-5">Client Information</h5>
+      <h5 className="mt-2">Client Information</h5>
       <ul className="list-group list-group-flush ">
         <li className="list-group-item">
           <FaBuilding className="icon" /> {client.company}

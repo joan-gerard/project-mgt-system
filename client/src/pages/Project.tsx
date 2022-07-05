@@ -36,18 +36,20 @@ const Project = () => {
 
       {!loading && !error && (
         <div className="card p-5 mt-2">
-          <div className="d-flex align-items-center mb-2">
-            <p
-              className={`rounded p-1 m-0 ${
-                status === "Not Started" ? "bg-secondary text-white" : ""
-              } ${status === "In Progress" ? "bg-warning" : ""} ${
-                status === "Completed" ? "bg-success text-white" : ""
-              }`}
-            >
-              {data.project.status}
-            </p>
+          <div className="d-flex align-content-center">
+            <h1 className="me-2">{data.project.name}</h1>
+            <div className="d-flex align-items-center">
+              <p
+                className={`rounded p-1 m-0 ${
+                  status === "Not Started" ? "bg-secondary text-white" : ""
+                } ${status === "In Progress" ? "bg-warning" : ""} ${
+                  status === "Completed" ? "bg-success text-white" : ""
+                }`}
+              >
+                {data.project.status}
+              </p>
+            </div>
           </div>
-          <h1>{data.project.name}</h1>
           <p>{data.project.description}</p>
 
           {data.project.client === null ||
