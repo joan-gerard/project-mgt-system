@@ -2,6 +2,8 @@ import { useQuery } from "@apollo/client";
 import React, { useEffect, useState } from "react";
 import { GET_TASKS } from "../queries/taskQueries";
 import { sortProjectTasks } from "../utils";
+import AddTaskForm from "./AddTaskForm";
+import "./WBS.scss";
 
 const WBS: React.FC<WBSProps> = ({ id, loading, error }) => {
   const [tasks, setTasks] = useState<any>([]);
@@ -24,35 +26,53 @@ const WBS: React.FC<WBSProps> = ({ id, loading, error }) => {
     }
   }, [loading, error, taskLoading, taskError, taskData]);
 
-  console.log("projectTasks", tasks);
-
   return (
     <>
       <h5 className="mt-5">Work Breakdown Structure</h5>
-      <table className="table table-sm">
-        <thead>
-          <tr>
-            <th scope="col">WBS</th>
-            <th scope="col">Task</th>
-            <th scope="col">Start</th>
-            <th scope="col">End</th>
-            <th scope="col">Progress</th>
-            <th scope="col">Dependency</th>
-          </tr>
-        </thead>
-        <tbody>
-          {tasks.map((task: ITask, i: number) => (
-            <tr key={i}>
-              <th scope="row">{i + 1}</th>
-              <td>{task.name}</td>
-              <td>{task.start}</td>
-              <td>{task.end}</td>
-              <td>{task.progress}</td>
-              <td>{task.dependencies}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <div className="table-container" role="table">
+        <div className="flex-table header" role="rowgroup">
+          <div className="flex-row first" role="columnheader">
+            WBS
+          </div>
+          <div className="flex-row" role="columnheader">
+            Task
+          </div>
+          <div className="flex-row" role="columnheader">
+            Start
+          </div>
+          <div className="flex-row" role="columnheader">
+            End
+          </div>
+          <div className="flex-row" role="columnheader">
+            Progress
+          </div>
+          <div className="flex-row" role="columnheader">
+            Dependencies
+          </div>
+        </div>
+        {tasks.map((task: ITask, i: number) => (
+          <div key={i} className="flex-table row" role="rowgroup">
+            <div className="flex-row first" role="cell">
+              {i + 1}
+            </div>
+            <div className="flex-row" role="cell">
+              {task.name}
+            </div>
+            <div className="flex-row" role="cell">
+              {task.start}
+            </div>
+            <div className="flex-row" role="cell">
+              {task.end}
+            </div>
+            <div className="flex-row" role="cell">
+              {task.progress}
+            </div>
+            <div className="flex-row" role="cell">
+              {task.dependencies}
+            </div>
+          </div>
+        ))}
+      </div>
     </>
   );
 };
