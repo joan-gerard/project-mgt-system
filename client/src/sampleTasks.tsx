@@ -2,7 +2,7 @@ export const sampleTasks = [
   {
     id: "Buy hosting",
     name: "Buy hosting",
-    start: "2022-01-22",
+    start: "2022-01-21",
     end: "2022-01-23",
     progress: 100,
   },

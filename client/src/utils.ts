@@ -8,10 +8,7 @@ export const getTodayDate = () => {
 };
 
 export const changeDateFormat = (completionDate: string) => {
-  const updatedDate = completionDate
-    .replace(/-/g, " / ")
-    .split(" ")
-    .reverse();
+  const updatedDate = completionDate.replace(/-/g, " / ").split(" ").reverse();
 
   // swap array elements
   const tmp = updatedDate[2];
@@ -21,7 +18,10 @@ export const changeDateFormat = (completionDate: string) => {
   return updatedDate.join("");
 };
 
-export const calculateCountdown = (completionDate: string, cb: (a: number) => void) => {
+export const calculateCountdown = (
+  completionDate: string,
+  cb: (a: number) => void
+) => {
   const today = new Date();
   const date2 = new Date(changeDateFormat(completionDate));
 
@@ -29,4 +29,14 @@ export const calculateCountdown = (completionDate: string, cb: (a: number) => vo
   const Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
 
   cb(Math.ceil(Difference_In_Days));
+};
+
+export const sortProjectTasks = (a: any, b: any) => {
+  if (a.start < b.start) {
+    return -1;
+  }
+  if (a.start > b.start) {
+    return 1;
+  }
+  return 0;
 };
