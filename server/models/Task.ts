@@ -7,19 +7,19 @@ const TaskSchema = new mongoose.Schema({
   taskId: {
     type: String,
   },
-  taskName: {
+  name: {
     type: String,
   },
-  taskStart: {
+  start: {
     type: String,
   },
-  taskEnd: {
+  end: {
     type: String,
   },
-  taskProgress: {
+  progress: {
     type: Number,
   },
-  taskDependency: {
+  dependencies: {
     type: String,
   },
 });

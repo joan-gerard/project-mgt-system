@@ -5,11 +5,11 @@ export const GET_TASKS = gql`
     tasks {
       projectId
       id: taskId
-      name: taskName
-      start: taskStart
-      end: taskEnd
-      progress: taskProgress
-      dependencies: taskDependency
+      name
+      start
+      end
+      progress
+      dependencies
     }
   }
 `;

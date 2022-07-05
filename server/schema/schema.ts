@@ -47,11 +47,11 @@ const TaskType = new GraphQLObjectType({
     id: { type: GraphQLID },
     projectId: { type: GraphQLString },
     taskId: { type: GraphQLString },
-    taskName: { type: GraphQLString },
-    taskStart: { type: GraphQLString },
-    taskEnd: { type: GraphQLString },
-    taskProgress: { type: GraphQLInt },
-    taskDependency: { type: GraphQLString },
+    name: { type: GraphQLString },
+    start: { type: GraphQLString },
+    end: { type: GraphQLString },
+    progress: { type: GraphQLInt },
+    dependencies: { type: GraphQLString },
   }),
 });
 
@@ -215,21 +215,21 @@ const mutation = new GraphQLObjectType({
       args: {
         projectId: { type: new GraphQLNonNull(GraphQLString) },
         taskId: { type: new GraphQLNonNull(GraphQLString) },
-        taskName: { type: new GraphQLNonNull(GraphQLString) },
-        taskStart: { type: new GraphQLNonNull(GraphQLString) },
-        taskEnd: { type: new GraphQLNonNull(GraphQLString) },
-        taskProgress: { type: new GraphQLNonNull(GraphQLInt) },
-        taskDependency: { type: GraphQLString },
+        name: { type: new GraphQLNonNull(GraphQLString) },
+        start: { type: new GraphQLNonNull(GraphQLString) },
+        end: { type: new GraphQLNonNull(GraphQLString) },
+        progress: { type: new GraphQLNonNull(GraphQLInt) },
+        dependencies: { type: GraphQLString },
       },
       resolve(parent, args) {
         const task = new Task({
           projectId: args.projectId,
           taskId: args.taskId,
-          taskName: args.taskName,
-          taskStart: args.taskStart,
-          taskEnd: args.taskEnd,
-          taskProgress: args.taskProgress,
-          taskDependency: args.taskDependency,
+          name: args.name,
+          start: args.start,
+          end: args.end,
+          progress: args.progress,
+          dependencies: args.dependencies,
         });
         return task.save();
       },

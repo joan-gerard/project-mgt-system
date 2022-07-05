@@ -17,13 +17,15 @@ const WBS: React.FC<WBSProps> = ({ id, loading, error }) => {
       const projectTasks = taskData.tasks.filter(
         (task: any) => task.projectId === id
       );
-      console.log("projectTasks", projectTasks);
 
       projectTasks.sort(sortProjectTasks);
 
       setTasks(projectTasks);
     }
   }, [loading, error, taskLoading, taskError, taskData]);
+
+  console.log("projectTasks", tasks);
+
   return (
     <>
       <h5 className="mt-5">Work Breakdown Structure</h5>
