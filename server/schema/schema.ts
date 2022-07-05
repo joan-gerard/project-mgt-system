@@ -1,10 +1,12 @@
 //Mongoose models
 import Project from "../models/Project";
 import Client from "../models/Client";
+import Task from "../models/Task";
 
 import {
   GraphQLEnumType,
   GraphQLID,
+  GraphQLInt,
   GraphQLList,
   GraphQLNonNull,
   GraphQLObjectType,
@@ -29,7 +31,7 @@ const ProjectType = new GraphQLObjectType({
     id: { type: GraphQLID },
     name: { type: GraphQLString },
     description: { type: GraphQLString },
-    completionDate: {type: GraphQLString},
+    completionDate: { type: GraphQLString },
     status: { type: GraphQLString },
     client: {
       type: ClientType,
@@ -37,6 +39,19 @@ const ProjectType = new GraphQLObjectType({
         return Client.findById(parent.clientId);
       },
     },
+  }),
+});
+const TaskType = new GraphQLObjectType({
+  name: "Task",
+  fields: () => ({
+    id: { type: GraphQLID },
+    projectId: { type: GraphQLString },
+    taskId: { type: GraphQLString },
+    taskName: { type: GraphQLString },
+    taskStart: { type: GraphQLString },
+    taskEnd: { type: GraphQLString },
+    taskProgress: { type: GraphQLInt },
+    taskDependency: { type: GraphQLString },
   }),
 });
 
@@ -70,6 +85,19 @@ const RootQuery = new GraphQLObjectType({
         return Project.findById(args.id);
       },
     },
+    tasks: {
+      type: new GraphQLList(TaskType),
+      resolve(parent, args) {
+        return Task.find();
+      },
+    },
+    task: {
+      type: TaskType,
+      args: { id: { type: GraphQLID } },
+      resolve(parent, args) {
+        return Task.findById(args.id);
+      },
+    },
   },
 });
 
@@ -77,6 +105,7 @@ const RootQuery = new GraphQLObjectType({
 const mutation = new GraphQLObjectType({
   name: "Mutation",
   fields: {
+    // ---- Clients ---- //
     addClient: {
       type: ClientType,
       args: {
@@ -104,6 +133,8 @@ const mutation = new GraphQLObjectType({
         return Client.findByIdAndRemove(args.id);
       },
     },
+
+    // ---- Projects ---- //
     addProject: {
       type: ProjectType,
       args: {
@@ -175,6 +206,32 @@ const mutation = new GraphQLObjectType({
       },
       resolve(parent, args) {
         return Project.findByIdAndRemove(args.id);
+      },
+    },
+
+    // ---- Tasks ---- //
+    addtask: {
+      type: TaskType,
+      args: {
+        projectId: { type: new GraphQLNonNull(GraphQLString) },
+        taskId: { type: new GraphQLNonNull(GraphQLString) },
+        taskName: { type: new GraphQLNonNull(GraphQLString) },
+        taskStart: { type: new GraphQLNonNull(GraphQLString) },
+        taskEnd: { type: new GraphQLNonNull(GraphQLString) },
+        taskProgress: { type: new GraphQLNonNull(GraphQLInt) },
+        taskDependency: { type: GraphQLString },
+      },
+      resolve(parent, args) {
+        const task = new Task({
+          projectId: args.projectId,
+          taskId: args.taskId,
+          taskName: args.taskName,
+          taskStart: args.taskStart,
+          taskEnd: args.taskEnd,
+          taskProgress: args.taskProgress,
+          taskDependency: args.taskDependency,
+        });
+        return task.save();
       },
     },
   },

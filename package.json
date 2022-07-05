@@ -20,7 +20,6 @@
     "cors": "^2.8.5",
     "express": "^4.18.1",
     "express-graphql": "^0.12.0",
-    "frappe-gantt": "^0.6.1",
     "graphql": "^16.5.0",
     "mongoose": "^6.3.6",
     "react-confirm-alert": "^3.0.2",

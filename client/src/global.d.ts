@@ -14,6 +14,15 @@ interface IProject {
   completionDate: string;
 }
 
+interface ITask {
+  projectId: string;
+  name: string;
+  start: string;
+  end: string;
+  progress: number;
+  dependencies: string;
+}
+
 interface IClients {
   clients: IClient[];
 }
@@ -47,5 +56,10 @@ type EditProjectFormProps = {
   setNeedsUpdate: (a: boolean) => void;
 };
 
+type WBSProps = {
+  id: string | undefined;
+  loading: boolean;
+  error: undefined;
+};
 type HomeProps = {};
 type AddProjectModalProps = {};

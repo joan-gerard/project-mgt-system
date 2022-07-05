@@ -55,7 +55,7 @@ code {
   background-repeat: no-repeat;
   transition: width 300ms, margin-left 300ms;
 }
-.btn-effect:is(:hover) >div::before {
+.btn-effect:is(:hover) > div::before {
   width: 0px;
   height: 0;
   /* margin-left: 8px; */
@@ -90,12 +90,11 @@ code {
   margin-right: 6px;
 }
 
-
-.gantt-container {
-  width: 90vw; 
-  margin: 0 auto;
+.gantt {
+  font-weight: 600;
 }
 
-.bar-label {
-  color: red
+.gantt-container {
+  width: 90vw;
+  margin: 0 auto;
 }

@@ -5,16 +5,17 @@ import Spinner from "../components/Spinner";
 import { Link, useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import { GET_PROJECT } from "../queries/projectQueries";
-import { FaPencilAlt } from "react-icons/fa";
+import { FaPencilAlt, FaArrowAltCircleLeft } from "react-icons/fa";
 import EditProjectForm from "../components/EditProjectForm";
+import WBS from "../components/WBS";
 
 const Project = () => {
+  const [status, setStatus] = useState(null);
+
   const { id } = useParams();
   const { loading, error, data } = useQuery(GET_PROJECT, {
     variables: { id },
   });
-
-  const [status, setStatus] = useState(null);
 
   useEffect(() => {
     if (data?.project?.status) {
@@ -29,8 +30,12 @@ const Project = () => {
 
   return (
     <>
+      <Link to="/" className=" 2-25 d-inline ms-auto mb-3">
+        <FaArrowAltCircleLeft className="icon" />
+      </Link>
+
       {!loading && !error && (
-        <div className="mx-auto w-75 card p-5">
+        <div className="card p-5 mt-2">
           <div className="d-flex align-items-center mb-2">
             <p
               className={`rounded p-1 m-0 ${
@@ -41,13 +46,9 @@ const Project = () => {
             >
               {data.project.status}
             </p>
-            <Link to="/" className="btn btn-light btn-sn 2-25 d-inline ms-auto">
-              Home
-            </Link>
           </div>
           <h1>{data.project.name}</h1>
           <p>{data.project.description}</p>
-          {/* <h5 className="mt-3">Project Status!</h5> */}
 
           {data.project.client === null ||
           data.project.client.name === "No Client" ? (
@@ -55,6 +56,9 @@ const Project = () => {
           ) : (
             <ClientInfo client={data.project.client} />
           )}
+          {/* Project Tasks */}
+          <WBS id={id} loading={loading} error={error} />
+          {/* Project Tasks */}
           {needsUpdate ? (
             <EditProjectForm
               project={data.project}
