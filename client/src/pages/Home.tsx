@@ -6,13 +6,13 @@ import Projects from "../components/Projects";
 
 const Home = () => {
   return (
-    <>
+    <div>
       <AddProjectModal />
       <Projects />
       <hr />
       <AddClientModal />
       <Clients />
-    </>
+    </div>
   );
 };
 

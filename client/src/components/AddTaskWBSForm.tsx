@@ -4,7 +4,7 @@ import { FaPlusSquare } from "react-icons/fa";
 import { ADD_TASK } from "../mutations/taskMutations";
 import { GET_TASKS } from "../queries/taskQueries";
 
-const AddTaskForm: React.FC<AddTaskFormProps> = ({ id }) => {
+const AddTaskWBSForm: React.FC<AddTaskFormProps> = ({ id }) => {
   const [newTask, setNewTask] = useState<any>();
 
   const [name, setName] = useState("");
@@ -87,4 +87,4 @@ const AddTaskForm: React.FC<AddTaskFormProps> = ({ id }) => {
   );
 };
 
-export default AddTaskForm;
+export default AddTaskWBSForm;

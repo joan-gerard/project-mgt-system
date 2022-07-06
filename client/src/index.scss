@@ -60,19 +60,6 @@ code {
   transition: width 300ms, margin-left 300ms;
 }
 
-.project-icon > div::before {
-  width: 18px;
-  height: 15px;
-  background-image: url("./components/assets/project.svg");
-  margin-right: 6px;
-}
-.client-icon > div::before {
-  width: 21px;
-  height: 18px;
-  background-image: url("./components/assets/client2.svg");
-  margin-right: 4px;
-}
-
 .btn-effect:is(:hover) > div::before {
   width: 0px;
   height: 0;
@@ -85,9 +72,18 @@ code {
   margin-right: 0;
 
   overflow: hidden;
-  background-image: url("./components/assets/arrow-ar.svg");
   background-repeat: no-repeat;
   transition: width 300ms, margin-left 300ms;
+}
+
+.client-icon > div::after {
+  background-image: url("./components/assets/client2.svg");
+}
+.project-icon > div::after {
+  background-image: url("./components/assets/project.svg");
+}
+.task-icon > div::after {
+  background-image: url("./components/assets/list2.svg");
 }
 
 .btn-effect:is(:hover) > div::after {

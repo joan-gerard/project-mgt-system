@@ -3,7 +3,8 @@ import React, { useEffect, useState } from "react";
 import { FaTrashAlt } from "react-icons/fa";
 import { GET_TASKS } from "../queries/taskQueries";
 import { sortProjectTasks } from "../utils";
-import AddTaskForm from "./AddTaskForm";
+import AddTaskWBSForm from "./AddTaskWBSForm";
+import AddTaskForm from "./AddTaskWBSForm";
 import DeleteTaskButton from "./DeleteTaskButton";
 import "./WBS.scss";
 
@@ -80,7 +81,7 @@ const WBS: React.FC<WBSProps> = ({ id, loading, error }) => {
             </div>
           </div>
         ))}
-        <AddTaskForm id={id} />
+        <AddTaskWBSForm id={id} />
       </div>
     </>
   );

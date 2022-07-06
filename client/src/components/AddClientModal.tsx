@@ -46,7 +46,7 @@ const AddClientModal = () => {
   };
 
   return (
-    <>
+    <div className="d-flex justify-content-end">
       <button
         type="button"
         className="btn btn-secondary btn-effect client-icon"
@@ -132,7 +132,7 @@ const AddClientModal = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
