@@ -1,4 +1,4 @@
-$table-header: #1976d2;
+$table-header: #4795e3;
 $table-header-border: #1565c0;
 $table-border: #d9d9d9;
 $row-bg: #f4f2f1;
@@ -11,31 +11,24 @@ div {
   display: block;
   margin: 2em auto;
   width: 100%;
-}
-
-.flag-icon {
-  margin-right: 0.1em;
-}
-
-.flex-table {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  grid-template-rows: 100% auto;
-  border-left: solid 1px $table-border;
-  transition: 0.5s;
-  &:first-of-type {
-    border-top: solid 1px $table-header-border;
-    border-left: solid 1px $table-header-border;
-  }
-  &:first-of-type .flex-row {
+  .header {
     background: $table-header;
     color: white;
     border-color: $table-header-border;
   }
+  form {
+  }
+}
+
+.flex-table {
+  display: grid;
+  grid-template-columns: 60px repeat(5, 1fr) 60px;
+  grid-template-rows: 100% auto;
+  transition: 0.5s;
   &.row:nth-child(odd) .flex-row {
     background: $row-bg;
   }
-  &:hover {
+  &:not(:first-child):hover {
     background: #f5f5f5;
     transition: 500ms;
   }
@@ -44,40 +37,8 @@ div {
 .flex-row {
   display: block;
   width: 100%;
-  text-align: center;
   padding: 0.5em 0.5em;
-  border-right: solid 1px $table-border;
   border-bottom: solid 1px $table-border;
-}
-
-.rowspan {
-  display: grid;
-  grid-template-columns: 25% 75%;
-  grid-template-rows: 100%;
-}
-
-.column {
-  width: 100%;
-  padding: 0;
-  .flex-row {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, 33.3%);
-    grid-template-rows: 100% 100% 100%;
-    width: 100%;
-    padding: 0;
-    border: 0;
-    border-bottom: solid 1px $table-border;
-    &:hover {
-      background: #f5f5f5;
-      transition: 500ms;
-    }
-  }
-}
-
-.flex-cell {
-  text-align: center;
-  padding: 0.5em 0.5em;
-  border-right: solid 1px $table-border;
 }
 
 @media all and (min-width: 431px) and (max-width: 768px) {
@@ -87,20 +48,6 @@ div {
     grid-template-rows: repeat(auto-fill, 100%);
     .flex-row {
       border-bottom: solid 1px $table-border;
-    }
-  }
-
-  .rowspan {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, 100%);
-    grid-template-rows: repeat(auto-fill, 100%);
-    .flex-row {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, 33.33%);
-      border-bottom: solid 1px $table-border;
-    }
-    p {
-      margin: 0;
     }
   }
 
@@ -131,20 +78,5 @@ div {
     border-bottom: 0;
     grid-column-start: auto;
     grid-column-end: auto;
-  }
-
-  .rowspan {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, 100%);
-    grid-template-rows: 100% auto;
-    .flex-row {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, 100%);
-      grid-template-rows: auto;
-      border-bottom: solid 1px $table-border;
-    }
-    p {
-      margin: 0;
-    }
   }
 }

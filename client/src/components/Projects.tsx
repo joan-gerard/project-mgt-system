@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Spinner from "./Spinner";
 import { useQuery } from "@apollo/client";
 import { GET_PROJECTS } from "../queries/projectQueries";
@@ -9,7 +9,6 @@ import * as io from "socket.io-client";
 const socket = io.connect("http://localhost:5000");
 
 const Projects = () => {
-  const [projectData, setProjectData] = useState([]);
   const { loading, error, data, client, called } = useQuery(GET_PROJECTS);
 
   console.log('useQuery called?', called)

@@ -1,5 +1,6 @@
 import { useQuery } from "@apollo/client";
 import React, { useEffect, useState } from "react";
+import { FaTrashAlt } from "react-icons/fa";
 import { GET_TASKS } from "../queries/taskQueries";
 import { sortProjectTasks } from "../utils";
 import AddTaskForm from "./AddTaskForm";
@@ -49,9 +50,10 @@ const WBS: React.FC<WBSProps> = ({ id, loading, error }) => {
           <div className="flex-row" role="columnheader">
             Dependencies
           </div>
+          <div className="flex-row" role="columnheader"></div>
         </div>
         {tasks.map((task: ITask, i: number) => (
-          <div key={i} className="flex-table row" role="rowgroup">
+          <div key={i} className="flex-table" role="rowgroup">
             <div className="flex-row first" role="cell">
               {i + 1}
             </div>
@@ -70,8 +72,14 @@ const WBS: React.FC<WBSProps> = ({ id, loading, error }) => {
             <div className="flex-row" role="cell">
               {task.dependencies}
             </div>
+            <div className="flex-row" role="cell">
+              <button className="btn btn-danger btn-sm" onClick={() => {}}>
+                <FaTrashAlt />
+              </button>
+            </div>
           </div>
         ))}
+        <AddTaskForm />
       </div>
     </>
   );
