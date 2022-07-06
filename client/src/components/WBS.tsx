@@ -79,7 +79,7 @@ const WBS: React.FC<WBSProps> = ({ id, loading, error }) => {
             </div>
           </div>
         ))}
-        <AddTaskForm />
+        <AddTaskForm id={id} />
       </div>
     </>
   );

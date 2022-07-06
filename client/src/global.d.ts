@@ -61,5 +61,9 @@ type WBSProps = {
   loading: boolean;
   error: undefined;
 };
+
+type AddTaskFormProps = {
+  id: string | undefined
+}
 type HomeProps = {};
 type AddProjectModalProps = {};

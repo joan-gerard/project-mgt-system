@@ -1,28 +1,40 @@
+import { useMutation } from "@apollo/client";
 import React, { useState } from "react";
 import { FaPlusSquare } from "react-icons/fa";
+import { ADD_TASK } from "../mutations/taskMutations";
+import { GET_TASKS } from "../queries/taskQueries";
 
-const AddTaskForm = () => {
+const AddTaskForm: React.FC<AddTaskFormProps> = ({ id }) => {
   const [newTask, setNewTask] = useState<any>();
 
-  const [taskName, setTaskName] = useState("");
-  const [taskStart, setTaskStart] = useState("");
-  const [taskEnd, setTaskEnd] = useState("");
-  const [taskProgress, setTaskProgress] = useState("");
-  const [taskDependencies, setTaskDependencies] = useState("");
+  const [name, setName] = useState("");
+  const [start, setStart] = useState("");
+  const [end, setEnd] = useState("");
+  const [progress, setProgress] = useState("");
+  const [dependencies, setDependencies] = useState("");
+
+  const [addTask] = useMutation(ADD_TASK, {
+    variables: {
+      projectId: id,
+      name,
+      start,
+      end,
+      progress: +progress,
+      dependencies,
+    },
+    refetchQueries: [{query: GET_TASKS}]
+
+  });
 
   const handleAddProjectTask = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    addTask();
 
-    const newTask = {
-      id: taskName,
-      name: taskName,
-      start: taskStart,
-      end: taskEnd,
-      progress: +taskProgress,
-      dependencies: taskDependencies,
-    };
-
-    console.log(newTask);
+    setName("");
+    setStart("");
+    setEnd("");
+    setProgress("");
+    setDependencies("");
   };
 
   return (
@@ -35,36 +47,36 @@ const AddTaskForm = () => {
       <div className="flex-row" role="cell">
         <input
           type="text"
-          value={taskName}
-          onChange={(e) => setTaskName(e.target.value)}
+          value={name}
+          onChange={(e) => setName(e.target.value)}
         />
       </div>
       <div className="flex-row" role="cell">
         <input
           type="date"
-          value={taskStart}
-          onChange={(e) => setTaskStart(e.target.value)}
+          value={start}
+          onChange={(e) => setStart(e.target.value)}
         />
       </div>
       <div className="flex-row" role="cell">
         <input
           type="date"
-          value={taskEnd}
-          onChange={(e) => setTaskEnd(e.target.value)}
+          value={end}
+          onChange={(e) => setEnd(e.target.value)}
         />
       </div>
       <div className="flex-row" role="cell">
         <input
           type="text"
-          value={taskProgress}
-          onChange={(e) => setTaskProgress(e.target.value)}
+          value={progress}
+          onChange={(e) => setProgress(e.target.value)}
         />
       </div>
       <div className="flex-row" role="cell">
         <input
           type="text"
-          value={taskDependencies}
-          onChange={(e) => setTaskDependencies(e.target.value)}
+          value={dependencies}
+          onChange={(e) => setDependencies(e.target.value)}
         />
       </div>
       <div className="flex-row" role="cell">

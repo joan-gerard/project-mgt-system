@@ -210,11 +210,11 @@ const mutation = new GraphQLObjectType({
     },
 
     // ---- Tasks ---- //
-    addtask: {
+    addTask: {
       type: TaskType,
       args: {
         projectId: { type: new GraphQLNonNull(GraphQLString) },
-        taskId: { type: new GraphQLNonNull(GraphQLString) },
+        taskId: { type: GraphQLString },
         name: { type: new GraphQLNonNull(GraphQLString) },
         start: { type: new GraphQLNonNull(GraphQLString) },
         end: { type: new GraphQLNonNull(GraphQLString) },
@@ -224,7 +224,7 @@ const mutation = new GraphQLObjectType({
       resolve(parent, args) {
         const task = new Task({
           projectId: args.projectId,
-          taskId: args.taskId,
+          taskId: args.name,
           name: args.name,
           start: args.start,
           end: args.end,

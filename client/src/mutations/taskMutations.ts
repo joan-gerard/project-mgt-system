@@ -18,20 +18,18 @@ export const DELETE_TASK = gql`
 export const ADD_TASK = gql`
   mutation addTask(
     $projectId: String!
-    $taskId: String!
     $name: String!
     $start: String!
     $end: String!
-    $progress: Number!
+    $progress: Int!
     $dependencies: String!
   ) {
     addTask(
       projectId: $projectId
-      taskId: $taskId
       name: $name
       start: $start
       end: $end
-      progresss: $progresss
+      progress: $progress
       dependencies: $dependencies
     ) {
       id
