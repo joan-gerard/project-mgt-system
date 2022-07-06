@@ -8,7 +8,6 @@ import * as io from "socket.io-client";
 
 const socket = io.connect("http://localhost:5000");
 
-
 const AddClientModal = () => {
   const [name, setName] = useState("");
   const [company, setCompany] = useState("");
@@ -26,7 +25,7 @@ const AddClientModal = () => {
     //     data: { clients: [...(clients || []), addClient] },
     //   });
     // },
-    refetchQueries: [{query: GET_CLIENTS}]
+    refetchQueries: [{ query: GET_CLIENTS }],
   });
 
   const handleAddClient = (e: React.FormEvent<HTMLFormElement>) => {
@@ -36,11 +35,11 @@ const AddClientModal = () => {
       return alert("Please, fill all fields");
     }
     socket.emit("send_clients", {
-      data: { company, name, email, phone }
+      data: { company, name, email, phone },
     });
 
     addClient();
-    setCompany("")
+    setCompany("");
     setName("");
     setEmail("");
     setPhone("");
@@ -50,12 +49,11 @@ const AddClientModal = () => {
     <>
       <button
         type="button"
-        className="btn btn-secondary"
+        className="btn btn-secondary btn-effect client-icon"
         data-bs-toggle="modal"
         data-bs-target="#addClientModal"
       >
         <div className="d-flex align-items-center">
-          <FaUserPlus className="icon" />
           <div>Add Client</div>
         </div>
       </button>

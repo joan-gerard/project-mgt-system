@@ -47,25 +47,33 @@ code {
 
 .btn-effect > div::before {
   content: "";
-  /* display: block; */
-  width: 20px;
-  height: 17px;
   overflow: hidden;
-  background-image: url("./components/assets/list.svg");
   background-repeat: no-repeat;
   transition: width 300ms, margin-left 300ms;
 }
+
+.project-icon > div::before {
+  width: 18px;
+  height: 15px;
+  background-image: url("./components/assets/project.svg");
+  margin-right: 6px;
+}
+.client-icon > div::before {
+  width: 21px;
+  height: 18px;
+  background-image: url("./components/assets/client2.svg");
+  margin-right: 4px;
+}
+
 .btn-effect:is(:hover) > div::before {
   width: 0px;
   height: 0;
-  /* margin-left: 8px; */
 }
 
 .btn-effect > div::after {
   content: "";
   display: block;
   width: 0px;
-  /* height: 15px; */
   margin-right: 0;
 
   overflow: hidden;

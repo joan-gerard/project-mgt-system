@@ -27,11 +27,8 @@ const AddProjectModal = () => {
     //     data: { projects: [...(projects || []), addProject] },
     //   });
     // },
-    refetchQueries: [{query: GET_PROJECTS}] // not recommended to avoid too many queries
-
+    refetchQueries: [{ query: GET_PROJECTS }], // not recommended to avoid too many queries
   });
-
-
 
   const handleAddProject = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -40,7 +37,7 @@ const AddProjectModal = () => {
       return alert("Please, fill all fields");
     }
     socket.emit("send_projects", {
-      data: { name, description, completionDate, status, clientId }
+      data: { name, description, completionDate, status, clientId },
     });
 
     addProject();
@@ -59,7 +56,7 @@ const AddProjectModal = () => {
         <>
           <button
             type="button"
-            className="btn btn-secondary btn-effect"
+            className="btn btn-secondary btn-effect project-icon"
             data-bs-toggle="modal"
             data-bs-target="#addProjectModal"
           >
