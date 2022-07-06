@@ -15,6 +15,7 @@ interface IProject {
 }
 
 interface ITask {
+  id: string;
   projectId: string;
   name: string;
   start: string;
@@ -63,7 +64,12 @@ type WBSProps = {
 };
 
 type AddTaskFormProps = {
-  id: string | undefined
-}
+  id: string | undefined;
+};
+
+type DeleteTaskButtonProps = {
+  id: string | undefined;
+};
+
 type HomeProps = {};
 type AddProjectModalProps = {};

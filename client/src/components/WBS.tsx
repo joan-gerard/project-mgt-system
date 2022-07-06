@@ -4,6 +4,7 @@ import { FaTrashAlt } from "react-icons/fa";
 import { GET_TASKS } from "../queries/taskQueries";
 import { sortProjectTasks } from "../utils";
 import AddTaskForm from "./AddTaskForm";
+import DeleteTaskButton from "./DeleteTaskButton";
 import "./WBS.scss";
 
 const WBS: React.FC<WBSProps> = ({ id, loading, error }) => {
@@ -26,6 +27,8 @@ const WBS: React.FC<WBSProps> = ({ id, loading, error }) => {
       setTasks(projectTasks);
     }
   }, [loading, error, taskLoading, taskError, taskData]);
+
+  console.log('the tasks', tasks)
 
   return (
     <>
@@ -73,9 +76,7 @@ const WBS: React.FC<WBSProps> = ({ id, loading, error }) => {
               {task.dependencies}
             </div>
             <div className="flex-row" role="cell">
-              <button className="btn btn-danger btn-sm" onClick={() => {}}>
-                <FaTrashAlt />
-              </button>
+              <DeleteTaskButton id={task.id} />
             </div>
           </div>
         ))}

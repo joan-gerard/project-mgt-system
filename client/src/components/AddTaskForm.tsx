@@ -22,8 +22,7 @@ const AddTaskForm: React.FC<AddTaskFormProps> = ({ id }) => {
       progress: +progress,
       dependencies,
     },
-    refetchQueries: [{query: GET_TASKS}]
-
+    refetchQueries: [{ query: GET_TASKS }],
   });
 
   const handleAddProjectTask = (e: React.FormEvent<HTMLFormElement>) => {

@@ -12,7 +12,6 @@ import * as io from "socket.io-client";
 
 const socket = io.connect("http://localhost:5000");
 
-
 const DeleteProjectButton: React.FC<DeleteProjectButtonProps> = ({
   projectId,
 }) => {
@@ -37,12 +36,11 @@ const DeleteProjectButton: React.FC<DeleteProjectButtonProps> = ({
   const [confirmOpen, setConfirmOpen] = useState(false);
 
   const handleDeleteProject = () => {
-    deleteProject()
+    deleteProject();
     socket.emit("delete_project", {
-      data: { projectId }
+      data: { projectId },
     });
-
-  }
+  };
 
   return (
     <>
