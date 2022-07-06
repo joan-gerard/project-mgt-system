@@ -1,8 +1,72 @@
 export const getTodayDate = () => {
   const current = new Date();
-  const date = `${current.getDate()}/${
-    current.getMonth() + 1
-  }/${current.getFullYear()}`;
+  console.log("current date", new Date());
+
+  let day;
+  switch (new Date().getDay()) {
+    case 0:
+      day = "Sun";
+      break;
+    case 1:
+      day = "Mon";
+      break;
+    case 2:
+      day = "Tue";
+      break;
+    case 3:
+      day = "Wed";
+      break;
+    case 4:
+      day = "Thu";
+      break;
+    case 5:
+      day = "Fri";
+      break;
+    case 6:
+      day = "Sat";
+  }
+
+  let month;
+  switch (current.getMonth()) {
+    case 0:
+      month = "January";
+      break;
+    case 1:
+      month = "February";
+      break;
+    case 2:
+      month = "March";
+      break;
+    case 3:
+      month = "April";
+      break;
+    case 4:
+      month = "May";
+      break;
+    case 5:
+      month = "June";
+      break;
+    case 6:
+      month = "July";
+      break;
+    case 7:
+      month = "August";
+      break;
+    case 8:
+      month = "September";
+      break;
+    case 9:
+      month = "October";
+      break;
+    case 10:
+      month = "November";
+      break;
+    case 11:
+      month = "December";
+      break;
+  }
+
+  const date = `${day} ${current.getDate()} ${month} ${current.getFullYear()}`;
 
   return date;
 };

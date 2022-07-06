@@ -3,11 +3,11 @@ import logo from "./assets/logo.png";
 const Header = () => {
   return (
     // <nav className="navbar bg-light p-0 mb-4">
-    <div className="container">
+    <div className="">
       <a className="navbar-brand" href="/">
-        <div className="d-flex">
+        <div className="d-flex align-items-center">
           <img src={logo} alt="logo" className="mr-2" />
-          <div>Project Mgt</div>
+          <div>Projectiva</div>
         </div>
       </a>
     </div>

@@ -36,7 +36,7 @@ function App() {
     <>
       <ApolloProvider client={client}>
         <Router>
-          <nav className="navbar navbar-expand-lg bg-light ps-4 pe-4 mb-4 align-items-center">
+          <nav className="d-flex bg-light px-4 py-2 mb-4 align-items-center justify-content-between">
             <Header />
             <CurrentDate />
           </nav>
