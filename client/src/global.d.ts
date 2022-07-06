@@ -71,5 +71,6 @@ type DeleteTaskButtonProps = {
   id: string | undefined;
 };
 
-type HomeProps = {};
-type AddProjectModalProps = {};
+type DropdownButtonProps = {
+  id: string | undefined;
+};

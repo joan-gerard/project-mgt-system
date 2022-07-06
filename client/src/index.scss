@@ -45,6 +45,14 @@ code {
   opacity: 0.9;
 }
 
+.btn-grey {
+  background-color: grey;
+}
+.btn-grey:hover {
+  background-color: grey;
+  opacity: 0.9;
+}
+
 .btn-effect > div::before {
   content: "";
   overflow: hidden;
@@ -105,4 +113,9 @@ code {
 .gantt-container {
   width: 90vw;
   margin: 0 auto;
+}
+
+a {
+  text-decoration: none;
+  color: black
 }

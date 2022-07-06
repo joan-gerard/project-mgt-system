@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { calculateCountdown } from "../utils";
+import DropdownButton from "./DropdownButton";
 
 const ProjectCard: React.FC<ProjectRowProps> = ({ project }) => {
   const [isStarted, setIsStarted] = useState(false);
@@ -41,12 +42,16 @@ const ProjectCard: React.FC<ProjectRowProps> = ({ project }) => {
         <div className={`card-body`}>
           <div className="d-flex justify-content-between align-items-center">
             <h5 className="project-card">{project.name}</h5>
-            <a className="btn btn-light" href={`/project/${project.id}`}>
+            {/* <a className="btn btn-light" href={`/project/${project.id}`}>
               View
             </a>
-            <a className="btn btn-light" href={`/project/schedule/${project.id}`}>
+            <a
+              className="btn btn-light"
+              href={`/project/schedule/${project.id}`}
+            >
               Schedule
-            </a>
+            </a> */}
+            <DropdownButton id={project.id} />
           </div>
           <p className="small">
             Status:{" "}
