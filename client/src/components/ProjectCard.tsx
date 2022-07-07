@@ -51,7 +51,10 @@ const ProjectCard: React.FC<ProjectRowProps> = ({ project }) => {
             >
               Schedule
             </a> */}
-            <NavDropdownButton id={project.id} />
+            {/* <NavDropdownButton id={project.id} /> */}
+            <div className="btn btn-light border shadow-sm shadow-hover">
+              <a href={`/project/${project.id}`}>See Project</a>
+            </div>
           </div>
           <p className="small">
             Status:{" "}

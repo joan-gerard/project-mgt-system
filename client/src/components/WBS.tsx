@@ -33,8 +33,8 @@ const WBS: React.FC<WBSProps> = ({ id, loading, error }) => {
 
   return (
     <>
-      <h5 className="mx-2 mt-5">Work Breakdown Structure</h5>
-      <div className="table-container" role="table">
+      <h5 className="mx-2 my-3">Work Breakdown Structure</h5>
+      <div className="table-container m-0" role="table">
         <div className="mx-2 card">
           <div className="flex-table header" role="rowgroup">
             <div className="flex-row first" role="columnheader">

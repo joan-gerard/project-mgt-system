@@ -9,9 +9,11 @@ import EditProjectForm from "../components/EditProjectForm";
 import WBS from "../components/WBS";
 import ProjectActions from "../components/ProjectActions";
 import ProjectMenu from "../components/ProjectMenu";
+import Schedule from "./Schedule";
 
 const Project = () => {
   const [status, setStatus] = useState(null);
+  const [nav, setNav] = useState("info");
 
   const { id } = useParams();
   const { loading, error, data } = useQuery(GET_PROJECT, {
@@ -31,49 +33,66 @@ const Project = () => {
 
   return (
     <>
-      <Link to="/" className="btn 2-25 px-2 py-1 btn-white">
-        <FaArrowLeft />
-      </Link>
+      <div className="d-flex align-items-center my-3">
+        <Link to="/" className="btn 2-25 h-50 px-2 py-1 btn-white">
+          <FaArrowLeft />
+        </Link>
+        <div className="d-flex ms-2 align-items-center">
+          <h1 className="me-2 my-0">{data.project.name}</h1>
+          <div className="d-flex align-items-center">
+            <p
+              className={`rounded p-1 m-0 ${
+                status === "Not Started" ? "bg-secondary text-white" : ""
+              } ${status === "In Progress" ? "bg-warning" : ""} ${
+                status === "Completed" ? "bg-success text-white" : ""
+              }`}
+            >
+              {data.project.status}
+            </p>
+          </div>
+        </div>
+      </div>
 
       {!loading && !error && (
         <div className="card my-2">
-          {/* <ProjectMenu /> */}
-          <div className="d-flex mx-2 align-items-center justify-content-between">
-            <div className="d-flex">
-              <h1 className="me-2">{data.project.name}</h1>
-              <div className="d-flex align-items-center">
-                <p
-                  className={`rounded p-1 m-0 ${
-                    status === "Not Started" ? "bg-secondary text-white" : ""
-                  } ${status === "In Progress" ? "bg-warning" : ""} ${
-                    status === "Completed" ? "bg-success text-white" : ""
-                  }`}
-                >
-                  {data.project.status}
-                </p>
-              </div>
-            </div>
+          <div className="d-flex justify-content-between">
+            <ProjectMenu setNav={setNav} />
             <ProjectActions
               projectId={data.project.id}
               setNeedsUpdate={setNeedsUpdate}
             />
           </div>
 
-          <p className="mx-2">{data.project.description}</p>
+          {nav === "info" ? (
+            <>
+              <div className="d-flex mx-2 align-items-center justify-content-between"></div>
 
-          {data.project.client === null ||
-          data.project.client.name === "No Client" ? (
-            <></>
+              <p className="mx-2">{data.project.description}</p>
+
+              {data.project.client === null ||
+              data.project.client.name === "No Client" ? (
+                <></>
+              ) : (
+                <ClientInfo client={data.project.client} />
+              )}
+            </>
+          ) : nav === "wbs" ? (
+            <WBS id={id} loading={loading} error={error} />
+          ) : nav === "schedule" ? (
+            <Schedule />
           ) : (
-            <ClientInfo client={data.project.client} />
-          )}
-          <WBS id={id} loading={loading} error={error} />
-          {needsUpdate && (
             <EditProjectForm
               project={data.project}
               setNeedsUpdate={setNeedsUpdate}
             />
           )}
+
+          {/* {needsUpdate && (
+            <EditProjectForm
+              project={data.project}
+              setNeedsUpdate={setNeedsUpdate}
+            />
+          )} */}
         </div>
       )}
     </>
