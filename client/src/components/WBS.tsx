@@ -77,7 +77,7 @@ const WBS: React.FC<WBSProps> = ({ id, loading, error }) => {
               {task.dependencies}
             </div>
             <div className="flex-row" role="cell">
-              <DeleteTaskButton id={task.id} />
+              <DeleteTaskButton _id={task._id} />
             </div>
           </div>
         ))}

@@ -15,6 +15,7 @@ interface IProject {
 }
 
 interface ITask {
+  _id: any;
   id: string;
   projectId: string;
   name: string;
@@ -68,7 +69,7 @@ type AddTaskFormProps = {
 };
 
 type DeleteTaskButtonProps = {
-  id: string | undefined;
+  _id: string | undefined;
 };
 
 type DropdownButtonProps = {

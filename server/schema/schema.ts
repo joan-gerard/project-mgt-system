@@ -44,9 +44,9 @@ const ProjectType = new GraphQLObjectType({
 const TaskType = new GraphQLObjectType({
   name: "Task",
   fields: () => ({
-    id: { type: GraphQLID },
+    _id: { type: GraphQLID },
     projectId: { type: GraphQLString },
-    taskId: { type: GraphQLString },
+    id: { type: GraphQLString },
     name: { type: GraphQLString },
     start: { type: GraphQLString },
     end: { type: GraphQLString },
@@ -214,7 +214,7 @@ const mutation = new GraphQLObjectType({
       type: TaskType,
       args: {
         projectId: { type: new GraphQLNonNull(GraphQLString) },
-        taskId: { type: GraphQLString },
+        id: { type: GraphQLString },
         name: { type: new GraphQLNonNull(GraphQLString) },
         start: { type: new GraphQLNonNull(GraphQLString) },
         end: { type: new GraphQLNonNull(GraphQLString) },
@@ -224,7 +224,7 @@ const mutation = new GraphQLObjectType({
       resolve(parent, args) {
         const task = new Task({
           projectId: args.projectId,
-          taskId: args.name,
+          id: args.name,
           name: args.name,
           start: args.start,
           end: args.end,
@@ -237,10 +237,10 @@ const mutation = new GraphQLObjectType({
     deleteTask: {
       type: TaskType,
       args: {
-        id: { type: new GraphQLNonNull(GraphQLID) },
+        _id: { type: new GraphQLNonNull(GraphQLID) },
       },
       resolve(parent, args) {
-        return Task.findByIdAndRemove(args.id);
+        return Task.findByIdAndRemove(args._id);
       },
     },
   },

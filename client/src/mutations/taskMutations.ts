@@ -1,11 +1,11 @@
 import { gql } from "@apollo/client";
 
 export const DELETE_TASK = gql`
-  mutation deleteTask($id: ID!) {
-    deleteTask(id: $id) {
-      id
+  mutation deleteTask($_id: ID!) {
+    deleteTask(_id: $_id) {
+      _id
       projectId
-      taskId
+      id
       name
       start
       end
@@ -32,9 +32,9 @@ export const ADD_TASK = gql`
       progress: $progress
       dependencies: $dependencies
     ) {
-      id
+      _id
       projectId
-      taskId
+      id
       name
       start
       end
