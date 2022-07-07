@@ -75,3 +75,8 @@ type DeleteTaskButtonProps = {
 type DropdownButtonProps = {
   id: string | undefined;
 };
+
+type ProjectActionDropdownProps = {
+  projectId: string;
+  setNeedsUpdate: (a: boolean) => void
+}

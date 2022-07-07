@@ -4,6 +4,10 @@ import { useNavigate } from "react-router-dom";
 import { GET_PROJECTS } from "../queries/projectQueries";
 import { useMutation } from "@apollo/client";
 import { DELETE_PROJECT } from "../mutations/projectmutations";
+import trash1 from './assets/trash1.svg'
+import trash2 from './assets/trash2.svg'
+import trash3 from './assets/trash3.svg'
+
 
 import "react-confirm-alert/src/react-confirm-alert.css"; // Import css
 import ConfirmDialog from "./ConfirmDialog";
@@ -44,14 +48,15 @@ const DeleteProjectButton: React.FC<DeleteProjectButtonProps> = ({
 
   return (
     <>
-      <div className="d-flex mt-5 ms-auto">
-        <button
-          className="btn btn-danger btn-sm"
-          onClick={() => setConfirmOpen(true)}
+      <div className="btn btn-white px-2 py-1 ms-2">
+        <div
+          // className="btn btn-danger btn-sm"
+          onClick={() => {
+            setConfirmOpen(true);
+          }}
         >
-          <FaTrash className="icon mb-1" />
-          Delete Project
-        </button>
+            <img src={trash3} />
+        </div>
         <ConfirmDialog
           title="Delete Post?"
           open={confirmOpen}

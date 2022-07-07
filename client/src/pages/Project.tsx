@@ -8,6 +8,7 @@ import { GET_PROJECT } from "../queries/projectQueries";
 import { FaPencilAlt, FaArrowAltCircleLeft } from "react-icons/fa";
 import EditProjectForm from "../components/EditProjectForm";
 import WBS from "../components/WBS";
+import ProjectActionDropdown from "../components/ProjectActionDropdown";
 
 const Project = () => {
   const [status, setStatus] = useState(null);
@@ -36,20 +37,24 @@ const Project = () => {
 
       {!loading && !error && (
         <div className="card p-5 mt-2">
-          <div className="d-flex align-content-center">
-            <h1 className="me-2">{data.project.name}</h1>
-            <div className="d-flex align-items-center">
-              <p
-                className={`rounded p-1 m-0 ${
-                  status === "Not Started" ? "bg-secondary text-white" : ""
-                } ${status === "In Progress" ? "bg-warning" : ""} ${
-                  status === "Completed" ? "bg-success text-white" : ""
-                }`}
-              >
-                {data.project.status}
-              </p>
+          <div className="d-flex align-items-center justify-content-between">
+            <div className="d-flex">
+              <h1 className="me-2">{data.project.name}</h1>
+              <div className="d-flex align-items-center">
+                <p
+                  className={`rounded p-1 m-0 ${
+                    status === "Not Started" ? "bg-secondary text-white" : ""
+                  } ${status === "In Progress" ? "bg-warning" : ""} ${
+                    status === "Completed" ? "bg-success text-white" : ""
+                  }`}
+                >
+                  {data.project.status}
+                </p>
+              </div>
             </div>
+            <ProjectActionDropdown projectId={data.project.id} setNeedsUpdate={setNeedsUpdate} />
           </div>
+
           <p>{data.project.description}</p>
 
           {data.project.client === null ||
@@ -61,27 +66,28 @@ const Project = () => {
           {/* Project Tasks */}
           <WBS id={id} loading={loading} error={error} />
           {/* Project Tasks */}
-          {needsUpdate ? (
-            <EditProjectForm
-              project={data.project}
-              setNeedsUpdate={setNeedsUpdate}
-            />
-          ) : (
-            <button
-              type="button"
-              className="btn btn-secondary ms-auto mt-5"
-              data-bs-toggle="modal"
-              data-bs-target="#addClientModal"
-              onClick={() => setNeedsUpdate(true)}
-            >
-              <div className="d-flex align-items-center">
-                <FaPencilAlt className="icon" />
-                <div>Edit Project</div>
-              </div>
-            </button>
-          )}
+          {
+            needsUpdate && (
+              <EditProjectForm
+                project={data.project}
+                setNeedsUpdate={setNeedsUpdate}
+              />
+            )
+            // <button
+            //   type="button"
+            //   className="btn btn-secondary ms-auto mt-5"
+            //   data-bs-toggle="modal"
+            //   data-bs-target="#addClientModal"
+            //   onClick={() => setNeedsUpdate(true)}
+            // >
+            //   <div className="d-flex align-items-center">
+            //     <FaPencilAlt className="icon" />
+            //     <div>Edit Project</div>
+            //   </div>
+            // </button>
+          }
 
-          <DeleteProjectButton projectId={data.project.id} />
+          {/* <DeleteProjectButton projectId={data.project.id} /> */}
         </div>
       )}
     </>

@@ -25,16 +25,16 @@ code {
   font-size: 15px;
 }
 
-.btn-primary,
-.bg-primary {
-  background-color: #df3ca6 !important;
-  border: none;
-}
+// .btn-primary,
+// .bg-primary {
+//   background-color: #df3ca6 !important;
+//   border: none;
+// }
 
-.btn-primary:hover {
-  background-color: #df3ca6;
-  opacity: 0.9;
-}
+// .btn-primary:hover {
+//   background-color: #df3ca6;
+//   opacity: 0.9;
+// }
 
 .btn-secondary {
   background-color: #7430f9;
@@ -51,6 +51,15 @@ code {
 .btn-grey:hover {
   background-color: grey;
   opacity: 0.9;
+}
+
+.btn-white {
+  border: 1px solid black;
+  background-color: rgb(230, 229, 229);
+}
+.btn-white:hover {
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  background-color: rgb(230, 229, 229);
 }
 
 .btn-effect > div::before {
@@ -113,5 +122,5 @@ code {
 
 a {
   text-decoration: none;
-  color: black
+  color: black;
 }

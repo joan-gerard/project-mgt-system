@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { calculateCountdown } from "../utils";
-import DropdownButton from "./DropdownButton";
+import NavDropdownButton from "./NavDropdownButton";
 
 const ProjectCard: React.FC<ProjectRowProps> = ({ project }) => {
   const [isStarted, setIsStarted] = useState(false);
@@ -51,7 +51,7 @@ const ProjectCard: React.FC<ProjectRowProps> = ({ project }) => {
             >
               Schedule
             </a> */}
-            <DropdownButton id={project.id} />
+            <NavDropdownButton id={project.id} />
           </div>
           <p className="small">
             Status:{" "}

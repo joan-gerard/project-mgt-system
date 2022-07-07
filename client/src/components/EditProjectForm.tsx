@@ -97,6 +97,12 @@ const EditProjectForm: React.FC<EditProjectFormProps> = ({
             <button className="btn btn-primary" type="submit">
               Submit
             </button>
+            <button
+              className="btn btn-white ms-2"
+              onClick={() => setNeedsUpdate(false)}
+            >
+              Cancel
+            </button>
           </form>
         </div>
       )}

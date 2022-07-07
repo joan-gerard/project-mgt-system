@@ -4,7 +4,7 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import { FaEllipsisH } from "react-icons/fa";
 
-const DropdownButton: React.FC<DropdownButtonProps> = ({ id }) => {
+const NavDropdownButton: React.FC<DropdownButtonProps> = ({ id }) => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -51,4 +51,4 @@ const DropdownButton: React.FC<DropdownButtonProps> = ({ id }) => {
   );
 };
 
-export default DropdownButton;
+export default NavDropdownButton;
