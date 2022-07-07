@@ -7,16 +7,13 @@ const ProjectActions: React.FC<ProjectActionDropdownProps> = ({
   setNeedsUpdate,
 }) => {
   return (
-    <div className="d-flex align-items-center">
-      <div
+    <div className="d-flex align-items-center mx-2">
+      {/* <div
         className="btn btn-primary py-1 px-2"
-        // type="button"
-        // data-bs-toggle="modal"
-        // data-bs-target="#addClientModal"
         onClick={() => setNeedsUpdate(true)}
       >
         <FaPencilAlt />
-      </div>
+      </div> */}
       <DeleteProjectButton projectId={projectId} />
     </div>
   );

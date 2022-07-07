@@ -66,11 +66,8 @@ const Schedule = () => {
     <>
       {!loading && !error && (
         <div>
-          <h3>Project: {data.project.name}</h3>
-          <div className="d-flex justify-content-end">
-            <AddTaskScheduleModal id={id} />
-          </div>
-          <div className="card bg-light rounded border-light shadow mt-2">
+          {/* <h3>Project: {data.project.name}</h3> */}
+          <div className="card bg-light rounded border-light shadow m-2">
             {!loading && !error && !taskLoading && !taskError && taskData && (
               <FrappeGantt
                 tasks={tasks}
@@ -85,6 +82,9 @@ const Schedule = () => {
                 // onTasksChange={(tasks) => console.log("log 4:", tasks, "tasks")}
               />
             )}
+          </div>
+          <div className="d-flex justify-content-end m-2">
+            <AddTaskScheduleModal id={id} />
           </div>
         </div>
       )}

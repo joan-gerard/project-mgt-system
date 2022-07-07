@@ -80,3 +80,7 @@ type ProjectActionDropdownProps = {
   projectId: string;
   setNeedsUpdate: (a: boolean) => void
 }
+
+type ProjectMenuProps = {
+  setNav: (a: string) => void
+}
