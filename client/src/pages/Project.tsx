@@ -8,6 +8,7 @@ import { FaArrowLeft } from "react-icons/fa";
 import EditProjectForm from "../components/EditProjectForm";
 import WBS from "../components/WBS";
 import ProjectActions from "../components/ProjectActions";
+import ProjectMenu from "../components/ProjectMenu";
 
 const Project = () => {
   const [status, setStatus] = useState(null);
@@ -35,8 +36,9 @@ const Project = () => {
       </Link>
 
       {!loading && !error && (
-        <div className="card p-5 mt-2">
-          <div className="d-flex align-items-center justify-content-between">
+        <div className="card my-2">
+          {/* <ProjectMenu /> */}
+          <div className="d-flex mx-2 align-items-center justify-content-between">
             <div className="d-flex">
               <h1 className="me-2">{data.project.name}</h1>
               <div className="d-flex align-items-center">
@@ -57,7 +59,7 @@ const Project = () => {
             />
           </div>
 
-          <p>{data.project.description}</p>
+          <p className="mx-2">{data.project.description}</p>
 
           {data.project.client === null ||
           data.project.client.name === "No Client" ? (
@@ -65,9 +67,7 @@ const Project = () => {
           ) : (
             <ClientInfo client={data.project.client} />
           )}
-          {/* Project Tasks */}
           <WBS id={id} loading={loading} error={error} />
-          {/* Project Tasks */}
           {needsUpdate && (
             <EditProjectForm
               project={data.project}

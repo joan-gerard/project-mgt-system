@@ -39,7 +39,7 @@ const EditProjectForm: React.FC<EditProjectFormProps> = ({
   return (
     <>
       {!loading && !error && (
-        <div className="mt-5">
+        <div className="mx-2 my-2 ">
           <h3>Update Project Details</h3>
           <form onSubmit={handleEditProject}>
             <div className="mb-3">
