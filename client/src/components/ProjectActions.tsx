@@ -2,7 +2,7 @@ import * as React from "react";
 import { FaPencilAlt } from "react-icons/fa";
 import DeleteProjectButton from "./DeleteProjectButton";
 
-const ProjectActionDropdown: React.FC<ProjectActionDropdownProps> = ({
+const ProjectActions: React.FC<ProjectActionDropdownProps> = ({
   projectId,
   setNeedsUpdate,
 }) => {
@@ -22,4 +22,4 @@ const ProjectActionDropdown: React.FC<ProjectActionDropdownProps> = ({
   );
 };
 
-export default ProjectActionDropdown;
+export default ProjectActions;

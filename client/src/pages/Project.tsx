@@ -7,7 +7,7 @@ import { GET_PROJECT } from "../queries/projectQueries";
 import { FaArrowLeft } from "react-icons/fa";
 import EditProjectForm from "../components/EditProjectForm";
 import WBS from "../components/WBS";
-import ProjectActionDropdown from "../components/ProjectActionDropdown";
+import ProjectActions from "../components/ProjectActions";
 
 const Project = () => {
   const [status, setStatus] = useState(null);
@@ -51,7 +51,7 @@ const Project = () => {
                 </p>
               </div>
             </div>
-            <ProjectActionDropdown
+            <ProjectActions
               projectId={data.project.id}
               setNeedsUpdate={setNeedsUpdate}
             />
