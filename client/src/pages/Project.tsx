@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
 import ClientInfo from "../components/ClientInfo";
-import DeleteProjectButton from "../components/DeleteProjectButton";
 import Spinner from "../components/Spinner";
 import { Link, useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import { GET_PROJECT } from "../queries/projectQueries";
-import { FaPencilAlt, FaArrowAltCircleLeft } from "react-icons/fa";
+import { FaArrowLeft } from "react-icons/fa";
 import EditProjectForm from "../components/EditProjectForm";
 import WBS from "../components/WBS";
 import ProjectActionDropdown from "../components/ProjectActionDropdown";
@@ -31,8 +30,8 @@ const Project = () => {
 
   return (
     <>
-      <Link to="/" className=" 2-25 d-inline ms-auto mb-3">
-        <FaArrowAltCircleLeft className="icon" />
+      <Link to="/" className="btn 2-25 px-2 py-1 btn-white">
+        <FaArrowLeft />
       </Link>
 
       {!loading && !error && (
@@ -52,7 +51,10 @@ const Project = () => {
                 </p>
               </div>
             </div>
-            <ProjectActionDropdown projectId={data.project.id} setNeedsUpdate={setNeedsUpdate} />
+            <ProjectActionDropdown
+              projectId={data.project.id}
+              setNeedsUpdate={setNeedsUpdate}
+            />
           </div>
 
           <p>{data.project.description}</p>
@@ -66,28 +68,12 @@ const Project = () => {
           {/* Project Tasks */}
           <WBS id={id} loading={loading} error={error} />
           {/* Project Tasks */}
-          {
-            needsUpdate && (
-              <EditProjectForm
-                project={data.project}
-                setNeedsUpdate={setNeedsUpdate}
-              />
-            )
-            // <button
-            //   type="button"
-            //   className="btn btn-secondary ms-auto mt-5"
-            //   data-bs-toggle="modal"
-            //   data-bs-target="#addClientModal"
-            //   onClick={() => setNeedsUpdate(true)}
-            // >
-            //   <div className="d-flex align-items-center">
-            //     <FaPencilAlt className="icon" />
-            //     <div>Edit Project</div>
-            //   </div>
-            // </button>
-          }
-
-          {/* <DeleteProjectButton projectId={data.project.id} /> */}
+          {needsUpdate && (
+            <EditProjectForm
+              project={data.project}
+              setNeedsUpdate={setNeedsUpdate}
+            />
+          )}
         </div>
       )}
     </>

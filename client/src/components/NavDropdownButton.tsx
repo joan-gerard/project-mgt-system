@@ -31,10 +31,10 @@ const NavDropdownButton: React.FC<DropdownButtonProps> = ({ id }) => {
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}
-        // anchorOrigin={{
-        //   vertical: "top",
-        //   horizontal: "left",
-        // }}
+        anchorOrigin={{
+          vertical: "bottom",
+          horizontal: "center",
+        }}
         transformOrigin={{
           vertical: "top",
           horizontal: "left",
